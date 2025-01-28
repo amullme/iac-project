@@ -1,17 +1,21 @@
-# iac-project Summary
+# iac-project > flask-hello Summary
 
-This project combines different devops components into stacks for launch on multiple platforms.
-
-
-# How this project is organized
-
-- The components folder contains individual components which can be combined into a stack or a platform
-- The platforms folder contains a combination of components which represent a platform where a stack can be launched
-- A branch represents a stack, combining components with the requirements for launching on each platform
+The flask-hello branch launches a simple python/flask hello program on multiple platforms.
 
 
-# Useful links
+## Objectives
 
-- https://diskinside.com/2024/09/30/microservice-tech-stacks-introducing-the-frn/
-- https://github.com/techiescamp/vagrant-kubeadm-kubernetes 
-- https://github.com/techiescamp/pomodoro-microservice/blob/main/README.md 
+### 1. Customize a basic hello page using Python
+Follow README.md in the components/python folder of this repo
+
+### 2. Select a Docker image, write a Dockerfile, build the image, and push it to Dockerhub.
+Follow README.md in the components/docker folder of this repo
+
+### 3. Select a Vagrant image, write a Vagrantfile, and launch/test the container.
+Follow README.md in the components/vagrant folder of this repo
+
+### 4. Test the page as a deployment on a local Kubernetes cluster
+Follow README.md in the components/kubernetes folder of this repo.
+
+### 5. Test the page on AWS and Azure using Terraform
+Follow README.md in the components/terraform folder of this repo.
