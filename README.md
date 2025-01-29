@@ -8,11 +8,10 @@ The flask-hello branch launches a simple python/flask hello program on multiple 
 ### 1. Customize a basic hello page using Python
 Follow README.md in the components/python folder of this repo
 
-### Everything below is a work in progress
-
-#### 2. Select a Docker image, write a Dockerfile, build the image, and push it to Dockerhub.
+### 2. Select a Docker image, write a Dockerfile, build the image, and push it to Dockerhub.
 Follow README.md in the components/docker folder of this repo
 
+### Everything below this is a work in progress
 #### 3. Select a Vagrant image, write a Vagrantfile, and launch/test the container.
 Follow README.md in the components/vagrant folder of this repo
 
