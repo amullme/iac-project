@@ -1,21 +1,34 @@
 # iac-project/python/flask-hello/ Objective
 
-Build a small Python file using Flask as a web server which can be built into a docker image with requirments.txt
+Using the existing hello.py, save a requirements.txt file using a Python virtual environment
 
 # Steps
-## Edit hello.py if desired
-Use the hello.py file as is or as a template to build a better app
-
-## Generate a requirements.txt file
-1. Create a Python virtual environment: https://docs.python.org/3/library/venv.html
-1. Navigate the to folder containing your hello.py with the file and run it using the command below [^1].
+- If not done, use the README.md file in the `components/vagrant` folder in this repo to launch `testvm` and `prodvm`
+- SSH to the testvm using the command below:
 ```
-python hello.py
+vagrant ssh testvm
 ```
-3. Use pip3 to install missing packages: https://docs.python.org/3/installing/index.html
-3. Once everything is working, run the command below to generate a requirments.txt file [^2]. This will be used later by a Dockerfile
+- Navigate the to shared vagrant folder containing hello.py:
 ```
-pip freeze > requirements.txt
+cd /vagrant/python/flask-hello
 ```
-[^1]: You may need to use `python3`
-[^2]: You may need to use `pip3`. Alternative commands can be found here: https://www.geeksforgeeks.org/how-to-create-requirements-txt-file-in-python/
+- Create a Python virtual environment:
+```
+python -m venv ~/venv
+```
+- Activate the virtual environment:
+```
+source ~/venv/bin/activate
+```
+- Run `hello.py` using the command below [^1].
+```
+python3 hello.py
+```
+- Use `pip3` [^2] to install missing packages until `hello.py` works: https://docs.python.org/3/installing/index.html
+- Once everything is working, run the command below to generate a requirments.txt file [^3].
+```
+pip3 freeze > requirements.txt
+```
+[^1]: You may need to use `python`
+[^2]: You may need to use `pip`.
+[^3]: Alternative commands to create a `requirements.txt` file can be found here: https://www.geeksforgeeks.org/how-to-create-requirements-txt-file-in-python/
