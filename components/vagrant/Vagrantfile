@@ -1,20 +1,27 @@
 Vagrant.configure("2") do |config|
-  config.vm.box = "ubuntu/jammy64"
-  config.vm.box_version = "20241002.0.0"
-  config.vm.network "private_network", ip: "192.168.33.10"
-  config.vm.synced_folder ".", "/vagrant"
+
+  config.vm.box = "bento/ubuntu-24.04"
+  config.vm.synced_folder "../../components/", "/vagrant"
+  config.vm.provider "virtualbox" do |vb|
+    vb.cpus = 2
+    vb.memory = 4096
+  end
   config.vm.provision "shell", inline: <<-SHELL
-    apt-get update
-    # docker installation process: https://docs.docker.com/engine/install/ubuntu/
-    apt-get install ca-certificates curl
-    install -m 0755 -d /etc/apt/keyrings
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-    chmod a+r /etc/apt/keyrings/docker.asc
-    echo \
-      "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-      $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-    tee /etc/apt/sources.list.d/docker.list > /dev/null
-    apt-get update
-    apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+    echo "10.0.0.10 testvm" >> /etc/hosts
+    echo "10.0.0.11 prodvm" >> /etc/hosts
   SHELL
-end
+  config.vm.provision "shell", path: "../docker/docker_install.sh"
+
+  # Define the test vm
+  config.vm.define "testvm" do |testvm|
+    testvm.vm.hostname = "testvm"
+    testvm.vm.network "private_network", ip: "10.0.0.10"
+  end
+
+  # Define the stage vm
+  config.vm.define "prodvm" do |prodvm|
+    prodvm.vm.hostname = "prodvm"
+    prodvm.vm.network "private_network", ip: "10.0.0.11"
+  end
+
+end 
