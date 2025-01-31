@@ -8,16 +8,19 @@ Vagrant.configure("2") do |config|
     vb.cpus = 2
     vb.memory = 4096
   end
+  config.vm.provision "shell", path: "../docker/docker_install.sh"
   config.vm.provision "shell", inline: <<-SHELL
     echo "10.0.0.10 testvm" >> /etc/hosts
     echo "10.0.0.11 prodvm" >> /etc/hosts
   SHELL
-  config.vm.provision "shell", path: "../docker/docker_install.sh"
 
   # Define the test vm
   config.vm.define "testvm" do |testvm|
     testvm.vm.hostname = "testvm"
     testvm.vm.network "private_network", ip: "10.0.0.10"
+  testvm.vm.provision "shell", inline: <<-SHELL
+    apt install python3.12-venv -y
+  SHELL
   end
 
   # Define the stage vm

@@ -6,7 +6,7 @@ fake = Faker()
 
 @app.route('/')
 def hello():
-    return 'Hello ' + fake.name()
+    return 'Hello ' + fake.name() + '  '
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
