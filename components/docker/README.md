@@ -63,8 +63,11 @@ sudo -i
 docker run -p 5000:5000 amullme/flask-hello
 ```
 - On your host machine open `http://10.0.0.11:5000` in a web browser to test
-- If successful, you can now move on to the next step `components/kubernetes/local-kubeadm/README.md`
-
+- If successful, clean up by exiting all ssh sessions and running the command below from `components/vagrant/`
+```
+vagrant destroy --force
+```
+- You can now move on to the next step `components/kubernetes/local-kubeadm/README.md`
 ### Footnotes
 [^1]: You can skip building and pushing if you want to just pull and run it from my account.
 [^2]: You must be in the same directory as the `Dockerfile`
